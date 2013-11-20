@@ -1,11 +1,13 @@
-# cloud-to-butt-mozilla
+# cyber-to-butt-mozilla
 
-Derived from the work of Steven Frank's [cloud-to-butt](https://github.com/panicsteve/cloud-to-butt) Chrome extension.
+Firefox extension to replace "cyber" in any word beginning with it with "butt".
+
+Derived from the work of Dave Random's [cloud-to-butt-mozilla](https://github.com/DaveRandom/cloud-to-butt-mozilla) Firefox extension derived from the work of Steven Frank's [cloud-to-butt](https://github.com/panicsteve/cloud-to-butt) Chrome extension.
 
 
 ## Installing
 
-Download [CloudToButt.xpi](https://github.com/DaveRandom/cloud-to-butt-mozilla/blob/master/CloudToButt.xpi?raw=true)
+Download [CyberToButt.xpi](https://github.com/pr0zac/cyber-to-butt-mozilla/blob/master/CyberToButt.xpi?raw=true)
 
 
 ## Building
