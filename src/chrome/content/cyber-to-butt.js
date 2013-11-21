@@ -1,51 +1,68 @@
 (function() {
+  function walk(node) 
+  {
+    // I stole this function from here:
+    // http://is.gd/mwZp7E
 
-    function walk(node) 
+    var child, next;
+
+    switch ( node.nodeType )
     {
-        // I stole this function from here:
-        // http://is.gd/mwZp7E
-    
-        var child, next;
-    
-        switch ( node.nodeType )  
+      case 1:  // Element
+      case 9:  // Document
+      case 11: // Document fragment
+      child = node.firstChild;
+        while ( child )
         {
-            case 1:  // Element
-            case 9:  // Document
-            case 11: // Document fragment
-                child = node.firstChild;
-                while ( child ) 
-                {
-                    next = child.nextSibling;
-                    walk(child);
-                    child = next;
-                }
-                break;
-    
-            case 3: // Text node
-                handleText(node);
-                break;
+          next = child.nextSibling;
+          walk(child);
+          child = next;
         }
-    }
-    
-    function handleText(textNode)
-    {
-        var v = textNode.nodeValue;
-    
-        v = v.replace(/(\bcyber)([^\s]+)/g, 'butt$2');
-        v = v.replace(/(\bCyber)([^\s]+)/g, 'Butt$2');
-    
-        textNode.nodeValue = v;
-    }
+        break;
 
-    function windowLoadHandler()
-    {
-        // Dear Mozilla: I hate you for making me do this.
-        window.removeEventListener('load', windowLoadHandler);
-
-        document.getElementById('appcontent').addEventListener('DOMContentLoaded', function(e) {
-            walk(e.originalTarget.body);
-        });
+      case 3: // Text node
+        handleText(node);
+        break;
     }
+  }
 
-    window.addEventListener('load', windowLoadHandler);
+  function handleText(textNode)
+  {
+    var v = textNode.nodeValue;
+
+    v = v.replace(/(\bcyber)([^\s]+)/g, 'butt$2');
+    v = v.replace(/(\bCyber)([^\s]+)/g, 'Butt$2');
+
+    textNode.nodeValue = v;
+  }
+
+  function windowLoadHandler()
+  {
+    // Dear Mozilla: I hate you for making me do this.
+    window.removeEventListener('load', windowLoadHandler);
+
+    document.getElementById('appcontent').addEventListener('DOMContentLoaded', function(e) {
+      walk(e.originalTarget.body);
+      var cyber_butt_timer = null;
+
+      var observer = new MutationObserver(function(mutations) {
+        for (i = 0; i < mutations.length; ++i) {
+          if (mutations[i].addedNodes.length > 0) {
+            if (cyber_butt_timer) {
+              clearTimeout(cyber_butt_timer);
+            }
+            cyber_butt_timer = setTimeout(function() {
+              walk(e.originalTarget.body);
+            }, 50);
+            break;
+          }
+        }
+      });
+      var config = { attributes: true, childList: true, characterData: true };
+      observer.observe(e.originalTarget.body, config);
+    });
+  }
+
+  window.addEventListener('load', windowLoadHandler);
 }());
+
