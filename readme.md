@@ -2,6 +2,8 @@
 
 Firefox extension to replace "cyber" in any word beginning with it with "butt".
 
+Now replaces for case of async content loading as well! Your Google searches will now be improved that much more!
+
 Derived from the work of Dave Random's [cloud-to-butt-mozilla](https://github.com/DaveRandom/cloud-to-butt-mozilla) Firefox extension derived from the work of Steven Frank's [cloud-to-butt](https://github.com/panicsteve/cloud-to-butt) Chrome extension.
 
 
